@@ -11,11 +11,7 @@ int instr_trans(char *op, char *args, char* mcode)
 
 	strcpy(mcode, "AB CD EF");
 
-	/********************************/
-    /*  							*/
-	/*    generate machine code     */
-    /*  							*/
-	/********************************/
+
 	
 	return 1;	
 }
