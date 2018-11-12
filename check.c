@@ -8,7 +8,7 @@ int is_valid(char *op, char *args)
 	char* Source=NULL;
 	char* Dest=NULL;
 
-	if(!strcpy(op,"mov"))
+	if(strcmp(op,"mov") != 0)
 		return 0;
  
 	strcpy(Temp_args, args);

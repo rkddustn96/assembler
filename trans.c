@@ -13,7 +13,7 @@ int instr_trans(char *op, char *args, char* mcode)
 		return 0;
 	}
 
-	if (!strcpy(op, "mov"))
+	if (strcmp(op, "mov")!=0)
 		return 0;
 
 	strcpy(args, args);
