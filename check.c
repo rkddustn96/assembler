@@ -21,6 +21,9 @@ int is_valid(char *op, char *args)
 	S_What = Argm_What(Source);	
 	D_What = Argm_What(Dest);
 
+	if((!strcmp(S_What,"err")) || (!strcmp(D_What,"err")))
+		return 0;
+
 	if(!strcmp(S_What,"mem")&&!strcmp(D_What,"mem"))
 		return 0;
 	else if(!strcmp(S_What,"imm")&&!strcmp(D_What,"imm"))
@@ -45,6 +48,7 @@ char* Argm_What(char* argm){
 		result = "mem";
 	else if(argm[0]=='-'&&argm[1]=='0'&&argm[2]=='x')
 		result = "mem";
+	else result = "err";
 
 	return result;
 }
