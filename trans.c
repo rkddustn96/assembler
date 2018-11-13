@@ -42,7 +42,7 @@ int instr_trans(char *op, char *args, char* mcode)
 		else if (!strcmp(Dest, "%esi"))
 			strcpy(mcode, "be");
 		else if (!strcmp(Dest, "%edi"))
-			strcpy(mcode, "c0");
+			strcpy(mcode, "bf");
 	}
 	else if ((!strcmp(S_What, "mem1"))&& (!strcmp(D_What, "reg")))
 		strcpy(mcode, "a1");
