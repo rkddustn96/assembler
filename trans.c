@@ -42,16 +42,16 @@ int instr_trans(char *op, char *args, char* mcode)
 		else if (!strcmp(Dest, "%esi"))
 			strcpy(mcode, "be");
 		else if (!strcmp(Dest, "%edi"))
-			strcpy(mcode, "c0");
+			strcpy(mcode, "bf");
 	}
-	else if ((!strcmp(S_What, "mem1"))&& (!strcmp(D_What, "reg")))
+	else if ((!strcmp(S_What, "mem"))&&(!strcmp(D_What, "reg"))&&(!strcmp(Dest,"%eax")))
 		strcpy(mcode, "a1");
-	else if ((!(strcmp(S_What, "mem2")) || (!strcmp(S_What, "mem3"))) && !strcmp(D_What, "reg"))
+	else if ((!strcmp(S_What, "mem")) && (!strcmp(D_What, "reg")))
 		strcpy(mcode, "8b");
-	else if ((!strcmp(S_What, "reg")) && ((!(strcmp(D_What, "mem1")) || (!strcmp(D_What, "mem2")) || (!strcmp(D_What, "mem2")))))
+	else if ((!strcmp(S_What, "reg"))&&(!strcmp(Source,"%eax")) && (!strcmp(D_What, "mem")))
 		strcpy(mcode, "a3");
 
-		return 1;
+	return 1;
 }
 
 char* Trans_What(char* argm) {
@@ -62,11 +62,11 @@ char* Trans_What(char* argm) {
 		else if (argm[0] == '$')
 			result = "imm";
 		else if ((argm[0] == '0' && argm[1] == 'x'))
-			result = "mem1";
+			result = "mem";
 		else if (argm[0] == '(' && argm[1] == '%')
-			result = "mem2";
+			result = "mem";
 		else if (argm[0] == '-' && argm[1] == '0' && argm[2] == 'x')
-			result = "mem3";
+			result = "mem";
 
 	return result;
 }
