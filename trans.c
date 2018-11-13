@@ -6,6 +6,7 @@ int instr_trans(char *op, char *args, char* mcode)
 	char* D_What = NULL;
 	char* Source = NULL;
 	char* Dest = NULL;
+	int k;
 	// check syntax 
 	if (!is_valid(op, args)) {
 		printf("Error: %s %s is not valid\n", op, args);
@@ -19,7 +20,7 @@ int instr_trans(char *op, char *args, char* mcode)
 	strcpy(args, args);
 	Source = strtok(args, ",");
 	Dest = strtok(NULL, "\n");
-
+	k= strlen(Source)-1;
 	S_What = Trans_What(Source);
 	D_What = Trans_What(Dest);
 
@@ -44,7 +45,7 @@ int instr_trans(char *op, char *args, char* mcode)
 		else if (!strcmp(Dest, "%edi"))
 			strcpy(mcode, "bf");
 	}
-	else if ((!strcmp(S_What, "mem"))&&(!strcmp(D_What, "reg"))&&(!strcmp(Dest,"%eax")))
+	else if ((!strcmp(S_What, "mem"))&&(Source[k] != ')')&&(!strcmp(D_What, "reg"))&&(!strcmp(Dest,"%eax")))
 		strcpy(mcode, "a1");
 	else if ((!strcmp(S_What, "mem")) && (!strcmp(D_What, "reg")))
 		strcpy(mcode, "8b");
